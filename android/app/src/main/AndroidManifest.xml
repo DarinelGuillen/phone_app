@@ -4,11 +4,14 @@
     <!-- Permiso de Internet -->
     <uses-permission android:name="android.permission.INTERNET"/>
 
+    <!-- Permiso para enviar SMS -->
+    <uses-permission android:name="android.permission.SEND_SMS"/>
+
     <application
         android:label="phone_app"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
-        
+
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -18,7 +21,7 @@
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
             android:hardwareAccelerated="true"
             android:windowSoftInputMode="adjustResize">
-            
+
             <!-- Especifica un tema de Android para aplicar a esta actividad tan pronto como el proceso de Android haya comenzado. -->
             <meta-data
               android:name="io.flutter.embedding.android.NormalTheme"
@@ -29,14 +32,14 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        
+
         <!-- No elimines el meta-dato a continuación.
              Esto es utilizado por la herramienta de Flutter para generar GeneratedPluginRegistrant.java -->
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
     </application>
-    
+
     <!-- Requerido para consultar actividades que pueden procesar texto -->
     <queries>
         <intent>
@@ -48,6 +51,12 @@
         <intent>
             <action android:name="android.intent.action.DIAL"/>
             <data android:scheme="tel"/>
+        </intent>
+
+        <!-- Agregar el esquema de envío de SMS -->
+        <intent>
+            <action android:name="android.intent.action.SENDTO"/>
+            <data android:scheme="sms"/>
         </intent>
     </queries>
 </manifest>
