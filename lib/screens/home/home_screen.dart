@@ -11,6 +11,12 @@ class _HomeScreenState extends State<HomeScreen> {
   final TextEditingController _inputController = TextEditingController();
   String _displayText = '';
 
+  void _updateText() {
+    setState(() {
+      _displayText = _inputController.text;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,30 +30,25 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              // Imagen existente
               Image.network(
                 'https://static.vecteezy.com/system/resources/previews/034/950/530/non_2x/ai-generated-small-house-with-flowers-on-transparent-background-image-png.png',
                 width: 150,
                 height: 150,
               ),
               const SizedBox(height: 30),
-
-              // Input de texto
               TextField(
                 controller: _inputController,
-                onChanged: (text) {
-                  setState(() {
-                    _displayText = text;
-                  });
-                },
                 decoration: const InputDecoration(
                   labelText: 'Enter text',
                   border: OutlineInputBorder(),
                 ),
               ),
               const SizedBox(height: 20),
-
-              // Mostrar el texto actualizado en tiempo real
+              ElevatedButton(
+                onPressed: _updateText,
+                child: const Text('Actualizar'),
+              ),
+              const SizedBox(height: 20),
               Container(
                 width: 370,
                 height: 200,
